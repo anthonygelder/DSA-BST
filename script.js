@@ -140,3 +140,68 @@ class BinarySearchTree {
         return this.left._findMin();
     }
 }
+
+const BST = new BinarySearchTree();
+
+const arr = [3,1,4,6,9,2,5,7,10]
+// const arr = ['E','A','S','Y','Q','U','E','S','T','I','O','N']
+
+for (let i = 0; i < arr.length; i++) {
+    BST.insert(arr[i])
+}
+
+console.log(BST)
+
+
+function isItBST(node) {
+    if (!node) {
+        return true
+    }
+
+    if ((node.left && node.left.key > node.key) || (node.right && node.right.key < node.key)) {
+        return false
+    }
+
+    return isItBST(node.right) && isItBST(node.left)
+}
+
+console.log(isItBST(BST))
+
+
+
+function checkHeight(node) { 
+    if(!node) { return 0 } 
+    return Math.max(checkHeight(node.left), checkHeight(node.right)) + 1
+}
+
+console.log(checkHeight(BST))
+
+// 3,1,4,6,9,2,5,7
+    //     5
+    //     ^
+    //   3   7
+    //  ^     ^
+    // 1 4   6 9
+    //   ^
+    //  2
+
+    //     6
+    //     ^
+    //   3   7
+    //  ^     ^
+    // 1 4     9
+    //   ^
+    //  2
+
+
+
+
+    // What does this program do?
+    // adding values in the tree
+
+    function tree(t){
+        if(!t){
+            return 0;
+        }
+        return tree(t.left) + t.value + tree(t.right)
+    }
